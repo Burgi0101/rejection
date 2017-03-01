@@ -6,7 +6,9 @@
 
 <body>
     <div class="container">
-        <header class="header">Rejection</header>
+        <header class="header">
+            <h1>Rejection</h1>
+        </header>
         <article class="content">
             <p>Rejection Therapy is a social self-help game created by Jason Comely where being rejected by another person or
                 group is the sole winning condition. The player can attempt any kind of social rejection, or try a suggestion
@@ -18,14 +20,21 @@
                 players hope to adapt physically to the stresses of rejection.
             </p>
         </article>
-        <aside class="aside aside-left">
-            <h3>Questions</h2>
+        <aside class="aside aside-question">
+            <h3>Ask a Question</h3>
+            <input id="question"/>
+            <button onclick="addQuestion()"> add question</button>
+            <div id="questions"></div>
         </aside>
-        <aside class="aside aside-right">
-            <h3>Answers</h2>
+        <aside class="aside aside-score">
+            <h3>Score</h3>
+            <button onclick="clearStorage()"> clear storage</button>
         </aside>
-        <footer class="footer">Footer</footer>
+        <footer class="footer">
+            <a target="_blank">This project was inspired by Eric Elliott's learning course.</a>
+        </footer>
     </div>
+    <script src="./src/main.js"></script>
 </body>
 
 </html>
