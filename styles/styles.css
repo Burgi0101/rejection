@@ -44,8 +44,8 @@ aside {
 
 @media all and (min-width: 800px) {
   .content    { flex: 1 0px; }
-  .aside-questions { order: 1; } 
+  #aside-questions { order: 1; } 
   .content    { order: 2; }
-  .aside-score { order: 3; }
+  #aside-score { order: 3; }
   .footer  { order: 4; }
 }

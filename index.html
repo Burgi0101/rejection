@@ -4,7 +4,7 @@
     <link href="./styles/styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body onload="getStoredData()">
     <div class="container">
         <header class="header">
             <h1>Rejection</h1>
@@ -20,13 +20,13 @@
                 players hope to adapt physically to the stresses of rejection.
             </p>
         </article>
-        <aside class="aside aside-question">
+        <aside class="aside" id="aside-question">
             <h3>Ask a Question</h3>
-            <input id="question"/>
-            <button onclick="addQuestion()"> add question</button>
+            <input id="question" /><button onclick="addQuestion()"> add question</button>
+            <div id="errors"></div>
             <div id="questions"></div>
         </aside>
-        <aside class="aside aside-score">
+        <aside class="aside" id="aside-score">
             <h3>Score</h3>
             <button onclick="clearStorage()"> clear storage</button>
         </aside>
