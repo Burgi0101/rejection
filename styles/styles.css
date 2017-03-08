@@ -30,10 +30,17 @@
 }
 
 .content {
+  width: 70%;
+  height: 30%;
   text-align: left;
 }
 
-aside {
+#aside-questions {
+  width: 15%;
+}
+
+#aside-score {
+  width: 15%;
 }
 
 @media all and (min-width: 600px) {
@@ -41,7 +48,7 @@ aside {
 }
 
 @media all and (min-width: 800px) {
-  .content    { flex: 1 0px; }
+  .content    { flex: 2 0px; }
   #aside-questions { order: 1; } 
   .content    { order: 2; }
   #aside-score { order: 3; }
