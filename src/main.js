@@ -9,11 +9,11 @@ const createQuestionObject = (data) => Object.assign({}, {
 const createQuestion = (arr) => {
     document.getElementById("questions").innerHTML = arr.map((obj) => {
         return '<div> Question ' + obj.id + ': ' + obj.question +
-            ' <button onclick="answerQuestion(rejected)">rejected</button>' +
-            ' <button onclick="answerQuestion(accepted)">accepted</button>' +
+            ' <button onclick="acceptQuestion(' + obj.id + ')">accepted</button>' +
+            ' <button onclick="rejectQuestion(' + obj.id + ')">rejected</button>' +
             '</div></br>';
     }).join(" ");
-};
+}
 
 const createUniqueId = (arr) => {
     let id = 1;
@@ -23,9 +23,11 @@ const createUniqueId = (arr) => {
 
 //###########################################################################
 
-function getStoredData() {
-    const existingQuestions = JSON.parse(localStorage.getItem('allquestions')) || [];
-    createQuestion(existingQuestions);
+function acceptQuestion(id) {
+    console.log("accepted", id);
+}
+function rejectQuestion(id) {
+    console.log("rejected", id);
 }
 
 // creates a new question object and adds it to the localStorage
@@ -61,7 +63,12 @@ function addQuestion() {
     }
 }
 
-function clearStorage() {
+function getStoredData() {
+    const existingQuestions = JSON.parse(localStorage.getItem('allquestions')) || [];
+    createQuestion(existingQuestions);
+}
+
+function clearStoredData() {
     localStorage.clear();
 
     // clear the questions as the local storage was cleared
