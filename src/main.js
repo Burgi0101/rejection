@@ -1,17 +1,25 @@
 //factories
 const createQuestionObject = (data) => Object.assign({}, {
+    id: 0,
     timestamp: new Date().toLocaleString(),
     question: "",
     status: ""
 }, data);
 
 const createQuestion = (arr) => {
-    document.getElementById("questions").innerHTML = arr.map((obj, index) => {
-        return '<div> Question ' + index + ': ' + obj.question +
+    document.getElementById("questions").innerHTML = arr.map((obj) => {
+        return '<div> Question ' + obj.id + ': ' + obj.question +
             ' <button onclick="answerQuestion(rejected)">rejected</button>' +
-            ' <button onclick="answerQuestion(accepted)">accepted</button></div></br>';
+            ' <button onclick="answerQuestion(accepted)">accepted</button>' +
+            '</div></br>';
     }).join(" ");
 };
+
+const createUniqueId = (arr) => {
+    let id = 1;
+    arr.forEach(question => id++);
+    return id;
+}
 
 //###########################################################################
 
@@ -33,7 +41,7 @@ function addQuestion() {
         const existingQuestions = JSON.parse(localStorage.getItem('allquestions')) || [];
 
         // create new question object with the current value of the input field
-        const newQuestionObject = createQuestionObject({ question: currentQuestion.value, status: 'asked' });
+        const newQuestionObject = createQuestionObject({ id: createUniqueId(existingQuestions), question: currentQuestion.value, status: 'asked' });
 
         //add it to the already existing questions
         existingQuestions.push(newQuestionObject);
