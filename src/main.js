@@ -24,10 +24,37 @@ const createUniqueId = (arr) => {
 //###########################################################################
 
 function acceptQuestion(id) {
-    console.log("accepted", id);
+
+    const existingQuestions = JSON.parse(localStorage.getItem('allquestions')) || [];
+
+    for (let i = 0; i < existingQuestions.length; i++) {
+        if (id === existingQuestions[i].id) {
+            existingQuestions[i].status = "accepted";
+        }
+    }
+
+    localStorage.setItem('allquestions', JSON.stringify(existingQuestions));
+    updateScore(1);
 }
+
 function rejectQuestion(id) {
-    console.log("rejected", id);
+    const existingQuestions = JSON.parse(localStorage.getItem('allquestions')) || [];
+
+    for (let i = 0; i < existingQuestions.length; i++) {
+        if (id === existingQuestions[i].id) {
+            existingQuestions[i].status = "rejected";
+        }
+    }
+
+    localStorage.setItem('allquestions', JSON.stringify(existingQuestions));
+    updateScore(10);
+}
+
+function updateScore(value) {
+    let currentScore = JSON.parse(localStorage.getItem('score')) || 0;
+
+    document.getElementById("score").innerText = currentScore + value;
+    localStorage.setItem('score', currentScore + value);
 }
 
 // creates a new question object and adds it to the localStorage
@@ -63,9 +90,12 @@ function addQuestion() {
     }
 }
 
-function getStoredData() {
+function showStoredData() {
     const existingQuestions = JSON.parse(localStorage.getItem('allquestions')) || [];
     createQuestion(existingQuestions);
+
+    const existingScore = JSON.parse(localStorage.getItem('score')) || 0;
+    document.getElementById("score").innerText = existingScore;
 }
 
 function clearStoredData() {
@@ -73,4 +103,5 @@ function clearStoredData() {
 
     // clear the questions as the local storage was cleared
     document.getElementById("questions").innerHTML = "";
+    document.getElementById("score").innerText = 0;
 }
